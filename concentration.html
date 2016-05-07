@@ -66,7 +66,7 @@ WebFontConfig = {
 					<ul class="list-inline">
 						<li><a class="btn btn-default" href="mailto:info@summersidemakerspace.ca" title="Email us"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
 						<li><a class="btn btn-default" style="color: rgb(59, 89, 152)" href="https://facebook.com/summersidemakerspace/" title="Find us on Facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
-						<li><a class="btn btn-default" style="color: rgb(243, 134, 48)" href="https://github.com/summersidemakerspace/" title="Fork this on GitHub"><i class="fa fa-code-fork" aria-hidden="true"></i></a></li>
+						<li><a class="btn btn-default" style="color: rgb(243, 134, 48)" href="https://github.com/SummersideMakerspace/Concentration" title="Fork this on GitHub"><i class="fa fa-code-fork" aria-hidden="true"></i></a></li>
 					</ul>
 				</div>			
 				<h1><a href="http://summersidemakerspace.ca/" title="Summerside Makerspace">Summerside Makerspace</a></h1>
@@ -76,14 +76,18 @@ WebFontConfig = {
 				<div class="col-xs-12 col-sm-4 col-sm-push-8 sidebar">
 					<p class="lead">Concentration is a card game.</p>
 					<p>Cards are laid face down on a surface and two cards are flipped over each turn. The object of the game is to turn over pairs of matching cards.</p>
+					<div class="form-group">
+						<label for="deck-select">Card Deck:</label>
+						<select class="form-control" id="deck-select" name="deck-select">
+							<option value="upper_lower_alphabet">Uppercase <=> Lowercase English</option>
+						</select>
+					</div>					
 					<div class="text-center">
 						<button class="deal btn btn-success btn-lg">Deal!</button>
 					</div>
 					<hr>
-					<h2 class="text-center">Game Options</h2>
-					<ul class="right-sidebar">
-						<li>maybe later</li>
-					</ul>
+					<h2 class="text-center">More Options</h2>
+					<p>Maybe later</p>
 				</div>
 				<div class="col-xs-12 col-sm-8 col-sm-pull-4">
 					<div class="text-center field">
@@ -91,7 +95,7 @@ WebFontConfig = {
 				</div>
 			</div>
 			<footer class="footer">
-				<img alt="Summerside Makerspace" src="maker.png"><br>
+				<a href="http://summersidemakerspace.ca/" title="Summerside Makerspace"><img alt="Summerside Makerspace" src="maker.png"></a><br>
 				Copyright &copy; 2016 <a href="http://summersidemakerspace.ca/" title="Summerside Makerspace">Summerside Makerspace Inc.</a>.
 				Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
 			</footer>				

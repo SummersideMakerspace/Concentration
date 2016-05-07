@@ -70,7 +70,7 @@
 		tileset = [];
 		
 		//TODO(cjw) support more decks
-		decks.upper_lower_alphabet.init();
+		decks[$('#deck-select').val()].init();
 		
 		$field = $('.field');
 		$field.empty();		
