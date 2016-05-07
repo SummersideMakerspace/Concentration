@@ -1,0 +1,134 @@
+html{
+	overflow-y: scroll;
+	visibility: hidden;
+}
+
+.wf-active{
+	visibility: visible;
+}
+
+body{
+	color: #1f1f1f;
+	font-family: Raleway;
+	font-size: 17px;
+}
+
+body.modal-open{
+    padding-right: 0 !important;
+}
+
+.social-links{
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.social-links i{
+	font-size: 32px;
+}
+
+.page-header{
+	border-bottom-color: #96172e;
+	position: relative;
+}
+
+.page-header h1 a{
+	color: #1f1f1f;
+	text-decoration: none;
+}
+
+.sidebar{
+	text-align: justify;
+}
+
+.card{
+	color: #3f3f3f;
+	font-weight: 700;
+	height: 96px;
+	line-height: 96px;
+	font-size: 40px;
+	margin-top: 15px;
+	cursor: pointer;
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+	-webkit-transition: all 265ms ease-in-out;
+	-moz-transition: all 265ms ease-in-out;
+	-o-transition: all 265ms ease-in-out;
+	-ms-transition: all 265ms ease-in-out;
+}
+
+.card.no-match{
+	-webkit-transition: all 420ms ease-in-out;
+	-moz-transition: all 420ms ease-in-out;
+	-o-transition: all 420ms ease-in-out;
+	-ms-transition: all 420ms ease-in-out;
+}
+
+.card-even.no-match{
+	-webkit-transform: rotate(369deg);
+	-moz-transform: rotate(369deg);
+	-ms-transform: rotate(369deg);
+	-o-transform: rotate(369deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=4.3);	
+}
+
+.card-odd.no-match{
+	-webkit-transform: rotate(-369deg);
+	-moz-transform: rotate(-369deg);
+	-ms-transform: rotate(-369deg);
+	-o-transform: rotate(-369deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=-4.3);	
+}
+
+.card.match{
+	transform: scale(1.15);
+	-webkit-transition: all 420ms ease-in-out;
+	-moz-transition: all 420ms ease-in-out;
+	-o-transition: all 420ms ease-in-out;
+	-ms-transition: all 420ms ease-in-out;
+}
+
+.card.match .back{
+	box-shadow: 1px 1px 3px 1px #3f6;
+	-webkit-transition: all 420ms ease-in-out;
+	-moz-transition: all 420ms ease-in-out;
+	-o-transition: all 420ms ease-in-out;
+	-ms-transition: all 420ms ease-in-out;
+}
+
+.card .front{
+	border-radius: 7px;
+	box-shadow: 1px 1px 3px #666;
+	background: 
+		radial-gradient(circle at 100% 50%, transparent 20%, rgba(255,255,255,.3) 21%, rgba(255,255,255,.3) 34%, transparent 35%, transparent),
+		radial-gradient(circle at 0% 50%, transparent 20%, rgba(255,255,255,.3) 21%, rgba(255,255,255,.3) 34%, transparent 35%, transparent) 0 -50px;
+	background-color: #e7e7e7;
+	background-size:75px 100px;	
+}
+ 
+.card .back{
+	border-radius: 7px;
+	box-shadow: 1px 1px 3px #666;	
+}
+ 
+.modal-content{
+	padding: 45px;
+}
+  
+.footer{
+	margin-top: 30px;
+	border-top: 1px solid #96172e;
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.deal,
+.deal-confirm{
+	text-align: center;
+	width: 80%;
+	margin: 10px auto;
+}

@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Summerside Makerspace Concentration</title>		
+		<!--
+		
+Copyright 2016 Summerside Makerspace Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.		
+		
+		-->
+		<script>
+
+WebFontConfig = {
+    google: {
+          families: ['Raleway:400']
+    }
+};
+
+(function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+})();
+
+		</script>			
+		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel='stylesheet' id='font-awesome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css?ver=4.5.2' type='text/css' media='all'>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script src="https://cdn.rawgit.com/nnattawat/flip/v1.0.20/dist/jquery.flip.min.js"></script>
+		<script src="concentration-game.js"></script>
+		<meta name="description" content="A browser based version of the classic card matching game">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="og:title" content="Summerside Makerspace Concentration">
+		<meta name="og:site_name" content="Summerside Makerspace">
+		<meta name="og:url" content="http://summersidemakerspace.ca/concentration/">
+	</head>
+	<body>
+		<div class="modal fade concentration-overlay" tabindex="-1" role="dialog" aria-labelledby="modal">
+		  <div class="modal-dialog modal-sm">
+			<div class="modal-content">
+			</div>
+		  </div>
+		</div>	
+		<div class="container">
+			<div class="page-header text-center">
+				<div class="social-links">
+					<ul class="list-inline">
+						<li><a class="btn btn-default" href="mailto:info@summersidemakerspace.ca" title="Email us"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
+						<li><a class="btn btn-default" style="color: rgb(59, 89, 152)" href="https://facebook.com/summersidemakerspace/" title="Find us on Facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+						<li><a class="btn btn-default" style="color: rgb(243, 134, 48)" href="https://github.com/summersidemakerspace/" title="Fork this on GitHub"><i class="fa fa-code-fork" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>			
+				<h1><a href="http://summersidemakerspace.ca/" title="Summerside Makerspace">Summerside Makerspace</a></h1>
+				<h3>Concentration</h3>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-4 col-sm-push-8 sidebar">
+					<p class="lead">Concentration is a card game.</p>
+					<p>Cards are laid face down on a surface and two cards are flipped over each turn. The object of the game is to turn over pairs of matching cards.</p>
+					<div class="text-center">
+						<button class="deal btn btn-success btn-lg">Deal!</button>
+					</div>
+					<hr>
+					<h2 class="text-center">Game Options</h2>
+					<ul class="right-sidebar">
+						<li>maybe later</li>
+					</ul>
+				</div>
+				<div class="col-xs-12 col-sm-8 col-sm-pull-4">
+					<div class="text-center field">
+					</div>
+				</div>
+			</div>
+			<footer class="footer">
+				<img alt="Summerside Makerspace" src="maker.png"><br>
+				Copyright &copy; 2016 <a href="http://summersidemakerspace.ca/" title="Summerside Makerspace">Summerside Makerspace Inc.</a>.
+				Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+			</footer>				
+		</div>	
+	</body>
+</html>
