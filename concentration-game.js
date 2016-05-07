@@ -5,6 +5,8 @@
 		rows: 4, cols: 6, col_size: 2
 	}
 	var cards_flipped = 0;
+	var pair_flips = 0;
+	var pairs_left = 0;
 	var first_card = second_card = '';
 	var tileset = [];
 	
@@ -45,6 +47,7 @@
 	$(document).ready(function(){
 		$('.deal').click(function(){
 			if(game_in_progress){
+				$('.concentration-overlay .modal-dialog').addClass('modal-sm');
 				$('.concentration-overlay .modal-content').html(
 					"<p>Hmmm, Your game is already in progress. Are you sure you want to deal a new game?</p>"
 					+ "<div class='text-center'><button class='deal-confirm btn btn-success btn-lg'>Yes, deal!</button></div>"
@@ -67,6 +70,8 @@
 	
 	function init(){
 		game_in_progress = true;
+		pair_flips = 0;
+		pairs_left = (field_size.rows * field_size.cols) >> 1;
 		tileset = [];
 		
 		//TODO(cjw) support more decks
@@ -113,7 +118,7 @@
 						setTimeout(function(){
 							$('.card-' + first_card).removeClass('match');
 							$('.card-' + second_card).removeClass('match');
-							cards_flipped = 0;
+							triedAPair(true);
 						}, 550);
 					} else {
 						setTimeout(function(){
@@ -125,7 +130,7 @@
 							$('.card-' + second_card).removeClass('no-match');							
 							$('.card-' + first_card).flip(false);
 							$('.card-' + second_card).flip(false);
-							cards_flipped = 0;
+							triedAPair();
 						}, 1150);
 					}
 				}
@@ -143,6 +148,25 @@
 				cards_flipped++;
 			}
 		});
+	}
+	
+	function triedAPair(matched = false){
+		pair_flips++;
+		cards_flipped = 0;
+		if(matched && (--pairs_left == 0)){
+			gameOver();
+		}
+		console.log(pairs_left);
+	}
+	
+	function gameOver(){
+		$('.concentration-overlay .modal-dialog').removeClass('modal-sm');
+		$('.concentration-overlay .modal-content').html(
+			"<h1>You win!</h1>"
+			+ "<p>You found all " + (field_size.rows * field_size.cols) + " pairs in " + pair_flips + " tries.</p>"
+		);
+		$('.concentration-overlay').modal();
+		game_in_progress = false;
 	}
 	
 	function cardsMatch(){
