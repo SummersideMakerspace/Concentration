@@ -161,8 +161,8 @@
 					if(codeset.indexOf(temporary_element) >= 0){
 						idx--;
 					} else {
+						codeset.push(temporary_element);
 						tile = {id: idx, code: full_set[temporary_element].symbol + "<span class='tiny bottom'>" + full_set[temporary_element].title + "</span>"};
-						codeset.push(tile.code);
 						tileset.push(tile);
 						tile = {id: idx, code: temporary_element + 1};
 						tileset.push(tile);					
