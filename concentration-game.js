@@ -239,6 +239,79 @@
 				}				
 				
 			}
+		},
+		braille_english_uncontracted: {
+			init: function(){
+				code_set = [];
+				full_set = [
+					{braille: '&#x2801;',	english: 'A'},
+					{braille: '&#x2803;',	english: 'B'},
+					{braille: '&#x2809;',	english: 'C'},
+					{braille: '&#x2819;',	english: 'D'},
+					{braille: '&#x2811;',	english: 'E'},
+					{braille: '&#x280b;',	english: 'F'},
+					{braille: '&#x281b;',	english: 'G'},
+					{braille: '&#x2813;',	english: 'H'},
+					{braille: '&#x280a;',	english: 'I'},
+					{braille: '&#x281a;',	english: 'J'},
+					{braille: '&#x2805;',	english: 'K'},
+					{braille: '&#x2807;',	english: 'L'},
+					{braille: '&#x280d;',	english: 'M'},
+					{braille: '&#x281d;',	english: 'N'},
+					{braille: '&#x2815;',	english: 'O'},
+					{braille: '&#x280f;',	english: 'P'},
+					{braille: '&#x281f;',	english: 'Q'},
+					{braille: '&#x2817;',	english: 'R'},
+					{braille: '&#x280e;',	english: 'S'},
+					{braille: '&#x281e;',	english: 'T'},
+					{braille: '&#x2825;',	english: 'U'},
+					{braille: '&#x2827;',	english: 'V'},
+					{braille: '&#x283a;',	english: 'W'},
+					{braille: '&#x282d;',	english: 'X'},
+					{braille: '&#x283d;',	english: 'Y'},
+					{braille: '&#x2835;',	english: 'Z'},
+					{braille: '&#x2802;',	english: ','},
+					{braille: '&#x2806;',	english: ';'},
+					{braille: '&#x2812;',	english: ':'},
+					{braille: '&#x2832;',	english: '.'},
+					{braille: '&#x2816;',	english: '!'},
+					{braille: '&#x2836;',	english: '()'},
+					{braille: '&#x2826;',	english: '?&ldquo;'},
+					{braille: '&#x2814;',	english: '*'},
+					{braille: '&#x2834;',	english: '&rdquo;'},
+					{braille: '&#x2804;',	english: '&apos;'},
+					{braille: '&#x2824;',	english: '-'},
+					{braille: '&#x283c;&#x281a;',	english: '0'},
+					{braille: '&#x283c;&#x2801;',	english: '1'},
+					{braille: '&#x283c;&#x2803;',	english: '2'},
+					{braille: '&#x283c;&#x280c;',	english: '3'},
+					{braille: '&#x283c;&#x281c;',	english: '4'},
+					{braille: '&#x283c;&#x2811;',	english: '5'},
+					{braille: '&#x283c;&#x280b;',	english: '6'},
+					{braille: '&#x283c;&#x281b;',	english: '7'},
+					{braille: '&#x283c;&#x2813;',	english: '8'},
+					{braille: '&#x283c;&#x280a;',	english: '9'},
+				];
+				
+				total_pairs = (field_size.rows * field_size.cols) >> 1;
+				for(idx = 0; idx < total_pairs; idx++){
+					temporary_element = Math.floor(Math.random() * full_set.length);
+					if(code_set.indexOf(temporary_element) >= 0){
+						idx--;
+					} else {
+						code_set.push(temporary_element);
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].braille,
+							matched: false
+						};
+						tile_set.push(tile);
+						tile = {id: idx, code: full_set[temporary_element].english, matched: false};
+						tile_set.push(tile);					
+					}
+				}				
+				
+			}			
 		}
 	}
 	
