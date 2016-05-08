@@ -8,7 +8,8 @@
 	var pair_flips = 0;
 	var pairs_left = 0;
 	var first_card = second_card = '';
-	var tileset = [];
+	var tile_set = [];
+	var streak = 0;
 	
 	var decks = {
 		upper_lower_alphabet: {
@@ -17,18 +18,18 @@
 
 				total_pairs = (field_size.rows * field_size.cols) >> 1;
 				for(idx = 0; idx < total_pairs; idx++){
-					tile = {id: idx, code: Math.random().toString(36).substr(4, 1)};
+					tile = {id: idx, code: Math.random().toString(36).substr(4, 1), matched: false};
 					if(!isNaN(tile.code) || codeset.indexOf(tile.code) >= 0){
 						idx--;
 					} else {
 						codeset.push(tile.code);
-						tileset.push(tile);
+						tile_set.push(tile);
 					}
 				}
 				
 				for(idx = 0; idx < total_pairs; idx++){
-					tile = {id: tileset[idx].id, code: tileset[idx].code.toUpperCase()};
-					tileset.push(tile);
+					tile = {id: tile_set[idx].id, code: tile_set[idx].code.toUpperCase(), matched: false};
+					tile_set.push(tile);
 				}
 			}
 		},
@@ -162,10 +163,17 @@
 						idx--;
 					} else {
 						codeset.push(temporary_element);
-						tile = {id: idx, code: full_set[temporary_element].symbol + "<span class='tiny bottom'>" + full_set[temporary_element].title + "</span>"};
-						tileset.push(tile);
-						tile = {id: idx, code: temporary_element + 1};
-						tileset.push(tile);					
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].symbol 
+								+ "<span class='tiny bottom'>" 
+								+ full_set[temporary_element].title 
+								+ "</span>",
+							matched: false
+						};
+						tile_set.push(tile);
+						tile = {id: idx, code: temporary_element + 1, matched: false};
+						tile_set.push(tile);					
 					}
 				}
 			}
@@ -200,32 +208,38 @@
 		game_in_progress = true;
 		pair_flips = 0;
 		pairs_left = (field_size.rows * field_size.cols) >> 1;
-		tileset = [];
+		tile_set = [];
 		
-		//TODO(cjw) support more decks
 		decks[$('#deck-select').val()].init();
-		
+		drawShuffledField();
+	}
+	
+	function drawShuffledField(){
+		shuffle();
+		drawField();
+	}
+	
+	function shuffle(){
 		idx = total_pairs << 1;
 		while(idx != 0){
 			random_idx = Math.floor(Math.random() * idx);
 			idx--;
 			
-			temp = tileset[idx];
-			tileset[idx] = tileset[random_idx];
-			tileset[random_idx] = temp;
-		}		
-		
+			temp = tile_set[idx];
+			tile_set[idx] = tile_set[random_idx];
+			tile_set[random_idx] = temp;
+		}				
+	}	
+	
+	function drawField(){
 		$field = $('.field');
-		$field.empty();		
+		$field.empty();
 		var even_odd_toggle = false;
 		for(idx = 0; idx < field_size.rows; idx++){
 			var row = $(document.createElement('div')).addClass('row');
 			for(idy = 0; idy < field_size.cols; idy++){
-				tile = tileset.pop();
-				var col = $(document.createElement('div'))
-					.addClass('col-xs-' + field_size.col_size);
-				col.append(
-					$(document.createElement('div'))
+				tile = tile_set[idx * field_size.cols + idy];
+				var card = $(document.createElement('div'))
 					.addClass('card')
 					.addClass((even_odd_toggle ? 'card-even' : 'card-odd'))
 					.addClass('card-' + idx + '-' + idy)
@@ -238,62 +252,88 @@
 					.flip({
 						autosize: [true, true], 
 						trigger: 'manual'}
-					)
+					);
+				
+				if(tile.matched){
+					card.attr('data-matched', true);
+					card.flip(true);
+				}
+					
+				row.append($(document.createElement('div'))
+					.addClass('col-xs-' + field_size.col_size)
+					.append(card)
 				);
-				row.append(col);
 				even_odd_toggle = !even_odd_toggle;
 			}
 			$field.append(row);
-		}
+		}	
+
 		$('.card').each(function(){
-			$(this).on('flip:done', function(){
-				if(cards_flipped == 2){
-					if(cardsMatch()){
-						setTimeout(function(){
-							$('.card-' + first_card).addClass('match');
-							$('.card-' + second_card).addClass('match');
-						}, 125);
-						setTimeout(function(){
-							$('.card-' + first_card).removeClass('match');
-							$('.card-' + second_card).removeClass('match');
-							triedAPair(true);
-						}, 550);
+			$(this).click(function(){
+				if($(this).attr('data-matched')){
+					return;
+				}
+				if(cards_flipped < 2){
+					if(cards_flipped == 0){
+						first_card = $(this).attr('data-card-id');
 					} else {
-						setTimeout(function(){
-							$('.card-' + first_card).addClass('no-match');
-							$('.card-' + second_card).addClass('no-match');
-						}, 550);
-						setTimeout(function(){
-							$('.card-' + first_card).removeClass('no-match');
-							$('.card-' + second_card).removeClass('no-match');							
-							$('.card-' + first_card).flip(false);
-							$('.card-' + second_card).flip(false);
-							triedAPair();
-						}, 1150);
+						second_card = $(this).attr('data-card-id');
+					}
+					$(this).flip(true);	
+					if(++cards_flipped == 2){
+						triedAPair();
 					}
 				}
 			});
-		});
-		$('.card').click(function(){
-			if(cards_flipped < 2){
-				if(cards_flipped == 0){
-					first_card = $(this).attr('data-card-id');
-					$(this).flip(true);					
-				} else {
-					second_card = $(this).attr('data-card-id');
-					$(this).flip(true);	
-				}
-				cards_flipped++;
-			}
-		});
+		});		
 	}
 	
-	function triedAPair(matched = false){
+	function triedAPair(){
 		pair_flips++;
-		cards_flipped = 0;
-		if(matched && (--pairs_left == 0)){
-			gameOver();
-		}
+		if(cardsMatch()){
+			pairs_left--;
+			$.each(tile_set, function(index, entry){				
+				if(entry.id == $('.card-' + first_card).attr('data-tile-id')){
+					tile_set[index].matched = true;
+				}
+			});
+			setTimeout(function(){
+				$('.card-' + first_card).addClass('match').attr('data-matched', true);
+				$('.card-' + second_card).addClass('match').attr('data-matched', true);
+			}, 125);
+			setTimeout(function(){
+				$('.card-' + first_card).removeClass('match');
+				$('.card-' + second_card).removeClass('match');
+				cards_flipped = 0;
+				streak++;
+				if($('#streak-penalty').val() > 0 && ($('#streak-penalty').val() <= streak)){
+					streakPenalty();
+				}
+				if(pairs_left == 0){
+					gameOver();
+				}				
+			}, 550);			
+		} else {
+			setTimeout(function(){
+				$('.card-' + first_card).addClass('no-match');
+				$('.card-' + second_card).addClass('no-match');
+			}, 550);
+			setTimeout(function(){
+				$('.card-' + first_card).removeClass('no-match');
+				$('.card-' + second_card).removeClass('no-match');							
+				$('.card-' + first_card).flip(false);
+				$('.card-' + second_card).flip(false);
+				cards_flipped = 0;
+				streak = 0;
+			}, 1150);
+		}		
+	}
+	
+	function streakPenalty(){
+		streak = 0;
+		setTimeout(function(){
+			drawShuffledField();
+		}, 500);
 	}
 	
 	function gameOver(){

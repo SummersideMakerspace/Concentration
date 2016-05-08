@@ -54,7 +54,7 @@ WebFontConfig = {
 		<meta name="og:url" content="http://summersidemakerspace.ca/concentration/">
 	</head>
 	<body>
-		<div class="modal fade concentration-overlay" tabindex="-1" role="dialog" aria-labelledby="modal">
+		<div id="concentration-modal" class="modal fade concentration-overlay" tabindex="-1" role="dialog" aria-labelledby="concentration-modal">
 		  <div class="modal-dialog modal-sm">
 			<div class="modal-content">
 			</div>
@@ -79,8 +79,8 @@ WebFontConfig = {
 					<div class="form-group">
 						<label for="deck-select">Card Deck:</label>
 						<select class="form-control" id="deck-select" name="deck-select">
-							<option value="upper_lower_alphabet">English Alphabet: Uppercase <=> Lowercase </option>
-							<option value="element_atomic_number">Periodic Table: Name <=> Number</option>
+							<option value="upper_lower_alphabet">English Alphabet: Uppercase &lt;=&gt; Lowercase </option>
+							<option value="element_atomic_number">Periodic Table: Name &lt;=&gt; Number</option>
 						</select>
 					</div>					
 					<div class="text-center">
@@ -88,7 +88,15 @@ WebFontConfig = {
 					</div>
 					<hr>
 					<h2 class="text-center">More Options</h2>
-					<p>Maybe later</p>
+					<div class="form-group">
+						<label for="streak-penalty">Streak Penalty:</label>
+						<select class="form-control" id="streak-penalty" name="streak-penalty">
+							<option value="0">None</option>
+							<option value="1">One (1)</option>
+							<option value="2">Two (2)</option>
+							<option value="3" selected>Three (3)</option>
+						</select>
+					</div>	
 				</div>
 				<div class="col-xs-12 col-sm-8 col-sm-pull-4">
 					<div class="text-center field">
