@@ -30,15 +30,143 @@
 					tile = {id: tileset[idx].id, code: tileset[idx].code.toUpperCase()};
 					tileset.push(tile);
 				}
-				
-				idx = total_pairs << 1;
-				while(idx != 0){
-					random_idx = Math.floor(Math.random() * idx);
-					idx--;
-					
-					temp = tileset[idx];
-					tileset[idx] = tileset[random_idx];
-					tileset[random_idx] = temp;
+			}
+		},
+		element_atomic_number: {
+			init: function(){
+				codeset = [];
+				full_set = [
+					{title: "Hydrogen", symbol: "H", mole: 1.00794},
+					{title: "Helium", symbol: "He", mole: 4.002602},
+					{title: "Lithium", symbol: "Li", mole: 6.941},
+					{title: "Beryllium", symbol: "Be", mole: 9.012182},
+					{title: "Boron", symbol: "B", mole: 10.811},
+					{title: "Carbon", symbol: "C", mole: 12.0107},
+					{title: "Nitrogen", symbol: "N", mole: 14.0067},
+					{title: "Oxygen", symbol: "O", mole: 15.9994},
+					{title: "Fluorine", symbol: "F", mole: 18.998404},
+					{title: "Neon", symbol: "Ne", mole: 20.1797},
+					{title: "Sodium", symbol: "Na", mole: 22.989769},
+					{title: "Magnesium", symbol: "Mg", mole: 24.305},
+					{title: "Aluminium", symbol: "Al", mole: 26.981539},
+					{title: "Silicon", symbol: "Si", mole: 28.0855},
+					{title: "Phosphorus", symbol: "P", mole: 30.973763},
+					{title: "Sulfur", symbol: "S", mole: 32.065},
+					{title: "Chlorine", symbol: "Cl", mole: 35.453},
+					{title: "Argon", symbol: "Ar", mole: 39.948},
+					{title: "Potassium", symbol: "K", mole: 39.0983},
+					{title: "Calcium", symbol: "Ca", mole: 40.078},
+					{title: "Scandium", symbol: "Sc", mole: 44.955914},
+					{title: "Titanium", symbol: "Ti", mole: 47.867},
+					{title: "Vanadium", symbol: "V", mole: 50.9415},
+					{title: "Chromium", symbol: "Cr", mole: 51.9961},
+					{title: "Manganese", symbol: "Mn", mole: 54.938046},
+					{title: "Iron", symbol: "Fe", mole: 55.845},
+					{title: "Cobalt", symbol: "Co", mole: 58.933193},
+					{title: "Nickel", symbol: "Ni", mole: 58.6934},
+					{title: "Copper", symbol: "Cu", mole: 63.546},
+					{title: "Zinc", symbol: "Zn", mole: 65.38},
+					{title: "Gallium", symbol: "Ga", mole: 69.723},
+					{title: "Germanium", symbol: "Ge", mole: 72.63},
+					{title: "Arsenic", symbol: "As", mole: 74.9216},
+					{title: "Selenium", symbol: "Se", mole: 78.96},
+					{title: "Bromine", symbol: "Br", mole: 79.904},
+					{title: "Krypton", symbol: "Kr", mole: 83.798},
+					{title: "Rubidium", symbol: "Rb", mole: 85.4678},
+					{title: "Strontium", symbol: "Sr", mole: 87.62},
+					{title: "Yttrium", symbol: "Y", mole: 88.90585},
+					{title: "Zirconium", symbol: "Zr", mole: 91.224},
+					{title: "Niobium", symbol: "Nb", mole: 92.90638},
+					{title: "Molybdenum", symbol: "Mo", mole: 95.96},
+					{title: "Technetium", symbol: "Tc", mole: 98},
+					{title: "Ruthenium", symbol: "Ru", mole: 101.07},
+					{title: "Rhodium", symbol: "Rh", mole: 102.9055},
+					{title: "Palladium", symbol: "Pd", mole: 106.42},
+					{title: "Silver", symbol: "Ag", mole: 107.8682},
+					{title: "Cadmium", symbol: "Cd", mole: 112.411},
+					{title: "Indium", symbol: "In", mole: 114.818},
+					{title: "Tin", symbol: "Sn", mole: 118.71},
+					{title: "Antimony", symbol: "Sb", mole: 121.76},
+					{title: "Tellurium", symbol: "Te", mole: 127.6},
+					{title: "Iodine", symbol: "I", mole: 126.90447},
+					{title: "Xenon", symbol: "Xe", mole: 131.293},
+					{title: "Caesium", symbol: "Cs", mole: 132.90546},
+					{title: "Barium", symbol: "Ba", mole: 137.327},
+					{title: "Lanthanum", symbol: "La", mole: 138.90547},
+					{title: "Cerium", symbol: "Ce", mole: 140.116},
+					{title: "Praseodymium", symbol: "Pr", mole: 140.90765},
+					{title: "Neodymium", symbol: "Nd", mole: 144.242},
+					{title: "Promethium", symbol: "Pm", mole: 145},
+					{title: "Samarium", symbol: "Sm", mole: 150.36},
+					{title: "Europium", symbol: "Eu", mole: 151.964},
+					{title: "Gadolinium", symbol: "Gd", mole: 157.25},
+					{title: "Terbium", symbol: "Tb", mole: 158.92535},
+					{title: "Dysprosium", symbol: "Dy", mole: 162.5},
+					{title: "Holmium", symbol: "Ho", mole: 164.93031},
+					{title: "Erbium", symbol: "Er", mole: 167.259},
+					{title: "Thulium", symbol: "Tm", mole: 168.9342},
+					{title: "Ytterbium", symbol: "Yb", mole: 173.054},
+					{title: "Lutetium", symbol: "Lu", mole: 174.9668}, 
+					{title: "Hafnium", symbol: "Hf", mole: 178.49},
+					{title: "Tantalum", symbol: "Ta", mole: 180.94788},
+					{title: "Tungsten", symbol: "W", mole: 183.84},
+					{title: "Rhenium", symbol: "Re", mole: 186.207},
+					{title: "Osmium", symbol: "Os", mole: 190.23},
+					{title: "Iridium", symbol: "Ir", mole: 192.217},
+					{title: "Platinum", symbol: "Pt", mole: 195.084},
+					{title: "Gold", symbol: "Au", mole: 196.96657},
+					{title: "Mercury", symbol: "Hg", mole: 200.59},
+					{title: "Thallium", symbol: "Tl", mole: 204.3833},
+					{title: "Lead", symbol: "Pb", mole: 207.2},
+					{title: "Bismuth", symbol: "Bi", mole: 208.9804},
+					{title: "Polonium", symbol: "Po", mole: 209},
+					{title: "Astatine", symbol: "At", mole: 210},
+					{title: "Radon", symbol: "Rn", mole: 222},
+					{title: "Francium", symbol: "Fr", mole: 223},
+					{title: "Radium", symbol: "Ra", mole: 226},
+					{title: "Actinium", symbol: "Ac", mole: 227},
+					{title: "Thorium", symbol: "Th", mole: 232.03806},
+					{title: "Protactinium", symbol: "Pa", mole: 231.03587},
+					{title: "Uranium", symbol: "U", mole: 238.02892},
+					{title: "Neptunium", symbol: "Np", mole: 237},
+					{title: "Plutonium", symbol: "Pu", mole: 244},
+					{title: "Americium", symbol: "Am", mole: 243},
+					{title: "Curium", symbol: "Cm", mole: 247},
+					{title: "Berkelium", symbol: "Bk", mole: 247},
+					{title: "Californium", symbol: "Cf", mole: 251},
+					{title: "Einsteinium", symbol: "Es", mole: 252},
+					{title: "Fermium", symbol: "Fm", mole: 257},
+					{title: "Mendelevium", symbol: "Md", mole: 258},
+					{title: "Nobelium", symbol: "No", mole: 259},
+					{title: "Lawrencium", symbol: "Lr", mole: 262},
+					{title: "Rutherfordium", symbol: "Rf", mole: 267},
+					{title: "Dubnium", symbol: "Db", mole: 268},
+					{title: "Seaborgium", symbol: "Sg", mole: 271},
+					{title: "Bohrium", symbol: "Bh", mole: 272},
+					{title: "Hassium", symbol: "Hs", mole: 270},
+					{title: "Meitnerium", symbol: "Mt", mole: 276},
+					{title: "Darmstadtium", symbol: "Ds", mole: 281},
+					{title: "Roentgenium", symbol: "Rg", mole: 280},
+					{title: "Copernicium", symbol: "Cn", mole: 285},
+					{title: "Ununtrium", symbol: "Uut", mole: 284},
+					{title: "Flerovium", symbol: "Fl", mole: 289},
+					{title: "Ununpentium", symbol: "Uup", mole: 288},
+					{title: "Livermorium", symbol: "Lv", mole: 293},
+					{title: "Ununseptium", symbol: "Uus", mole: 294},
+					{title: "Ununoctium", symbol: "Uuo", mole: 294}
+				];				
+				total_pairs = (field_size.rows * field_size.cols) >> 1;
+				for(idx = 0; idx < total_pairs; idx++){
+					temporary_element = Math.floor(Math.random() * full_set.length);
+					if(codeset.indexOf(temporary_element) >= 0){
+						idx--;
+					} else {
+						tile = {id: idx, code: full_set[temporary_element].symbol + "<span class='tiny bottom'>" + full_set[temporary_element].title + "</span>"};
+						codeset.push(tile.code);
+						tileset.push(tile);
+						tile = {id: idx, code: temporary_element + 1};
+						tileset.push(tile);					
+					}
 				}
 			}
 		}
@@ -76,6 +204,16 @@
 		
 		//TODO(cjw) support more decks
 		decks[$('#deck-select').val()].init();
+		
+		idx = total_pairs << 1;
+		while(idx != 0){
+			random_idx = Math.floor(Math.random() * idx);
+			idx--;
+			
+			temp = tileset[idx];
+			tileset[idx] = tileset[random_idx];
+			tileset[random_idx] = temp;
+		}		
 		
 		$field = $('.field');
 		$field.empty();		
