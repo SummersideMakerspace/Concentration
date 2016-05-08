@@ -59,6 +59,32 @@
 				}
 			}
 		},
+		element_atomic_symbol: {
+			init: function(){
+				code_set = [];
+				full_set = fullSetPeriodicTable();			
+				total_pairs = (field_size.rows * field_size.cols) >> 1;
+				for(idx = 0; idx < total_pairs; idx++){
+					temporary_element = Math.floor(Math.random() * full_set.length);
+					if(code_set.indexOf(temporary_element) >= 0){
+						idx--;
+					} else {
+						code_set.push(temporary_element);
+						tile = {
+							id: idx, 
+							code: temporary_element + 1
+								+ "<span class='tiny bottom'>" 
+								+ full_set[temporary_element].title 
+								+ "</span>",
+							matched: false
+						};
+						tile_set.push(tile);
+						tile = {id: idx, code: full_set[temporary_element].symbol, matched: false};
+						tile_set.push(tile);					
+					}
+				}
+			}
+		},		
 		morse_english: {
 			init: function(){
 				code_set = [];
