@@ -156,7 +156,6 @@
 		if(matched && (--pairs_left == 0)){
 			gameOver();
 		}
-		console.log(pairs_left);
 	}
 	
 	function gameOver(){
