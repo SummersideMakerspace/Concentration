@@ -14,15 +14,15 @@
 	var decks = {
 		upper_lower_alphabet: {
 			init: function(){
-				codeset = [];
+				code_set = [];
 
 				total_pairs = (field_size.rows * field_size.cols) >> 1;
 				for(idx = 0; idx < total_pairs; idx++){
 					tile = {id: idx, code: Math.random().toString(36).substr(4, 1), matched: false};
-					if(!isNaN(tile.code) || codeset.indexOf(tile.code) >= 0){
+					if(!isNaN(tile.code) || code_set.indexOf(tile.code) >= 0){
 						idx--;
 					} else {
-						codeset.push(tile.code);
+						code_set.push(tile.code);
 						tile_set.push(tile);
 					}
 				}
@@ -35,7 +35,7 @@
 		},
 		element_atomic_number: {
 			init: function(){
-				codeset = [];
+				code_set = [];
 				full_set = [
 					{title: "Hydrogen", symbol: "H", mole: 1.00794},
 					{title: "Helium", symbol: "He", mole: 4.002602},
@@ -159,10 +159,10 @@
 				total_pairs = (field_size.rows * field_size.cols) >> 1;
 				for(idx = 0; idx < total_pairs; idx++){
 					temporary_element = Math.floor(Math.random() * full_set.length);
-					if(codeset.indexOf(temporary_element) >= 0){
+					if(code_set.indexOf(temporary_element) >= 0){
 						idx--;
 					} else {
-						codeset.push(temporary_element);
+						code_set.push(temporary_element);
 						tile = {
 							id: idx, 
 							code: full_set[temporary_element].symbol 
@@ -176,6 +176,68 @@
 						tile_set.push(tile);					
 					}
 				}
+			}
+		},
+		morse_english: {
+			init: function(){
+				code_set = [];
+				full_set = [
+					{morse: '&middot;-',	english: 'A'},
+					{morse: '-&middot;&middot;&middot;',	english: 'B'},
+					{morse: '-&middot;-&middot;',	english: 'C'},
+					{morse: '-&middot;&middot;',	english: 'D'},
+					{morse: '&middot;',	english: 'E'},
+					{morse: '&middot;&middot;-&middot;',	english: 'F'},
+					{morse: '--&middot;',	english: 'G'},
+					{morse: '&middot;&middot;&middot;&middot;',	english: 'H'},
+					{morse: '&middot;&middot;',	english: 'I'},
+					{morse: '&middot;---',	english: 'J'},
+					{morse: '-&middot;-',	english: 'K'},
+					{morse: '&middot;-&middot;&middot;',	english: 'L'},
+					{morse: '--',	english: 'M'},
+					{morse: '-&middot;',	english: 'N'},
+					{morse: '---',	english: 'O'},
+					{morse: '&middot;--&middot;',	english: 'P'},
+					{morse: '--&middot;-',	english: 'Q'},
+					{morse: '&middot;-&middot;',	english: 'R'},
+					{morse: '&middot;&middot;&middot;',	english: 'S'},
+					{morse: '-',	english: 'T'},
+					{morse: '&middot;&middot;-',	english: 'U'},
+					{morse: '&middot;&middot;&middot;-',	english: 'V'},
+					{morse: '&middot;--',	english: 'W'},
+					{morse: '-&middot;&middot;-',	english: 'X'},
+					{morse: '-&middot;--',	english: 'Y'},
+					{morse: '--&middot;&middot;',	english: 'Z'},
+					{morse: '-----',	english: '0'},
+					{morse: '&middot;----',	english: '1'},
+					{morse: '&middot;&middot;---',	english: '2'},
+					{morse: '&middot;&middot;&middot;--',	english: '3'},
+					{morse: '&middot;&middot;&middot;&middot;-',	english: '4'},
+					{morse: '&middot;&middot;&middot;&middot;&middot;',	english: '5'},
+					{morse: '-&middot;&middot;&middot;&middot;',	english: '6'},
+					{morse: '--&middot;&middot;&middot;',	english: '7'},
+					{morse: '---&middot;&middot;',	english: '8'},
+					{morse: '----&middot;',	english: '9'},
+				];
+				
+				total_pairs = (field_size.rows * field_size.cols) >> 1;
+				for(idx = 0; idx < total_pairs; idx++){
+					temporary_element = Math.floor(Math.random() * full_set.length);
+					if(code_set.indexOf(temporary_element) >= 0){
+						idx--;
+					} else {
+						code_set.push(temporary_element);
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].morse,
+							matched: false
+						};
+						tile_set.push(tile);
+						tile = {id: idx, code: full_set[temporary_element].english, matched: false};
+						tile_set.push(tile);					
+					}
+				}				
+				
 			}
 		}
 	}
