@@ -132,7 +132,31 @@
 				}				
 				
 			}			
-		}
+		},
+		japanese_katakana_english: {
+			init: function(){
+				code_set = [];
+				full_set = fullSetKatakana();				
+				total_pairs = (field_size.rows * field_size.cols) >> 1;
+				for(idx = 0; idx < total_pairs; idx++){
+					temporary_element = Math.floor(Math.random() * full_set.length);
+					if(code_set.indexOf(temporary_element) >= 0){
+						idx--;
+					} else {
+						code_set.push(temporary_element);
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].katakana,
+							matched: false
+						};
+						tile_set.push(tile);
+						tile = {id: idx, code: full_set[temporary_element].romaji, matched: false};
+						tile_set.push(tile);					
+					}
+				}				
+				
+			}			
+		}		
 	}
 	
 	$(document).ready(function(){
@@ -520,6 +544,115 @@
 			{braille: '&#x283c;&#x2813;',	english: '8'},
 			{braille: '&#x283c;&#x280a;',	english: '9'},
 		];		
+	}
+	
+	function fullSetKatakana(){
+		return [
+			{romaji: 'a', katakana: 'ア'},
+			{romaji: 'i', katakana: 'イ'},
+			{romaji: 'u', katakana: 'ウ'},
+			{romaji: 'e', katakana: 'エ'},
+			{romaji: 'o', katakana: 'オ'},
+			{romaji: 'ka', katakana: 'カ'},
+			{romaji: 'ki', katakana: 'キ'},
+			{romaji: 'ku', katakana: 'ク'},
+			{romaji: 'ke', katakana: 'ケ'},
+			{romaji: 'ko', katakana: 'コ'},
+			{romaji: 'sa', katakana: 'サ'},
+			{romaji: 'shi', katakana: 'シ'},
+			{romaji: 'su', katakana: 'ス'},
+			{romaji: 'se', katakana: 'セ'},
+			{romaji: 'so', katakana: 'ソ'},
+			{romaji: 'ta', katakana: 'タ'},
+			{romaji: 'te', katakana: 'チ'},
+			{romaji: 'tsu', katakana: 'ツ'},
+			{romaji: 'te', katakana: 'テ'},
+			{romaji: 'to', katakana: 'ト'},
+			{romaji: 'na', katakana: 'ナ'},
+			{romaji: 'ni', katakana: 'ニ'},
+			{romaji: 'nu', katakana: 'ヌ'},
+			{romaji: 'ne', katakana: 'ネ'},
+			{romaji: 'no', katakana: 'ノ'},
+			{romaji: 'ha', katakana: 'ハ'},
+			{romaji: 'hi', katakana: 'ヒ'},
+			{romaji: 'fu', katakana: 'フ'},
+			{romaji: 'he', katakana: 'ヘ'},
+			{romaji: 'ho', katakana: 'ホ'},
+			{romaji: 'ma', katakana: 'マ'},
+			{romaji: 'mi', katakana: 'ミ'},
+			{romaji: 'mu', katakana: 'ム'},
+			{romaji: 'me', katakana: 'メ'},
+			{romaji: 'mo', katakana: 'モ'},
+			{romaji: 'ya', katakana: 'ヤ'},
+			{romaji: 'yu', katakana: 'ユ'},
+			{romaji: 'yo', katakana: 'ヨ'},
+			{romaji: 'ra', katakana: 'ラ'},
+			{romaji: 'ri', katakana: 'リ'},
+			{romaji: 'ru', katakana: 'ル'},
+			{romaji: 're', katakana: 'レ'},
+			{romaji: 'ro', katakana: 'ロ'},
+			{romaji: 'wa', katakana: 'ワ'},
+			{romaji: 'wu', katakana: 'ヲ'},
+			{romaji: 'n', katakana: 'ン'},
+			{romaji: 'ga', katakana: 'ガ'},
+			{romaji: 'ge', katakana: 'ギ'},
+			{romaji: 'gu', katakana: 'グ'},
+			{romaji: 'ge', katakana: 'ゲ'},
+			{romaji: 'go', katakana: 'ゴ'},
+			{romaji: 'za', katakana: 'ザ'},
+			{romaji: 'ji', katakana: 'ジ'},
+			{romaji: 'zu', katakana: 'ズ'},
+			{romaji: 'ze', katakana: 'ゼ'},
+			{romaji: 'zo', katakana: 'ゾ'},
+			{romaji: 'da', katakana: 'ダ'},
+			{romaji: 'ji', katakana: 'ヂ'},
+			{romaji: 'zu', katakana: 'ヅ'},
+			{romaji: 'de', katakana: 'デ'},
+			{romaji: 'do', katakana: 'ド'},
+			{romaji: 'ba', katakana: 'バ'},
+			{romaji: 'bi', katakana: 'ビ'},
+			{romaji: 'bu', katakana: 'ブ'},
+			{romaji: 'be', katakana: 'ベ'},
+			{romaji: 'bo', katakana: 'ボ'},
+			{romaji: 'pa', katakana: 'パ'},
+			{romaji: 'pe', katakana: 'ピ'},
+			{romaji: 'pu', katakana: 'プ'},
+			{romaji: 'pe', katakana: 'ペ'},
+			{romaji: 'po', katakana: 'ポ'},
+			{romaji: 'kya', katakana: 'キャ'},
+			{romaji: 'kyu', katakana: 'キュ'},
+			{romaji: 'kyo', katakana: 'キョ'},
+			{romaji: 'sha', katakana: 'シャ'},
+			{romaji: 'shu', katakana: 'シュ'},
+			{romaji: 'sho', katakana: 'ショ'},
+			{romaji: 'cha', katakana: 'チャ'},
+			{romaji: 'chu', katakana: 'チュ'},
+			{romaji: 'cho', katakana: 'チョ'},
+			{romaji: 'nya', katakana: 'ニャ'},
+			{romaji: 'nyu', katakana: 'ニュ'},
+			{romaji: 'nyo', katakana: 'ニョ'},
+			{romaji: 'hya', katakana: 'ヒャ'},
+			{romaji: 'hyu', katakana: 'ヒュ'},
+			{romaji: 'hyo', katakana: 'ヒョ'},
+			{romaji: 'mya', katakana: 'ミャ'},
+			{romaji: 'myu', katakana: 'ミュ'},
+			{romaji: 'myo', katakana: 'ミョ'},
+			{romaji: 'rya', katakana: 'リャ'},
+			{romaji: 'ryu', katakana: 'リュ'},
+			{romaji: 'ryo', katakana: 'リョ'},
+			{romaji: 'gya', katakana: 'ギャ'},
+			{romaji: 'gyu', katakana: 'ギュ'},
+			{romaji: 'gyo', katakana: 'ギョ'},
+			{romaji: 'ja', katakana: 'ジャ'},
+			{romaji: 'ju', katakana: 'ジュ'},
+			{romaji: 'jo', katakana: 'ジョ'},
+			{romaji: 'bya', katakana: 'ビャ'},
+			{romaji: 'byu', katakana: 'ビュ'},
+			{romaji: 'byo', katakana: 'ビョ'},
+			{romaji: 'pya', katakana: 'ピャ'},
+			{romaji: 'pyu', katakana: 'ピュ'},
+			{romaji: 'pyo', katakana: 'ピョ'}
+		];
 	}
 	
 })(jQuery);
