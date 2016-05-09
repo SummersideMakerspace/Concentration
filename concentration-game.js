@@ -328,6 +328,9 @@
 					if(cards_flipped == 0){
 						first_card = $(this).attr('data-card-id');
 					} else {
+						if($(this).attr('data-card-id') == first_card){
+							return;
+						}
 						second_card = $(this).attr('data-card-id');
 					}
 					$(this).flip(true);	
