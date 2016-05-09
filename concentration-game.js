@@ -136,7 +136,7 @@
 		japanese_katakana_english: {
 			init: function(){
 				code_set = [];
-				full_set = fullSetKatakana();				
+				full_set = fullSetKatakanaHiragana();				
 				total_pairs = (field_size.rows * field_size.cols) >> 1;
 				for(idx = 0; idx < total_pairs; idx++){
 					temporary_element = Math.floor(Math.random() * full_set.length);
@@ -156,7 +156,58 @@
 				}				
 				
 			}			
+		},
+		japanese_hiragana_english: {
+			init: function(){
+				code_set = [];
+				full_set = fullSetKatakanaHiragana();				
+				total_pairs = (field_size.rows * field_size.cols) >> 1;
+				for(idx = 0; idx < total_pairs; idx++){
+					temporary_element = Math.floor(Math.random() * full_set.length);
+					if(code_set.indexOf(temporary_element) >= 0){
+						idx--;
+					} else {
+						code_set.push(temporary_element);
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].hiragana,
+							matched: false
+						};
+						tile_set.push(tile);
+						tile = {id: idx, code: full_set[temporary_element].romaji, matched: false};
+						tile_set.push(tile);					
+					}
+				}				
+				
+			}			
+		},
+		japanese_katakana_hiragana: {
+			init: function(){
+				code_set = [];
+				full_set = fullSetKatakanaHiragana();				
+				total_pairs = (field_size.rows * field_size.cols) >> 1;
+				for(idx = 0; idx < total_pairs; idx++){
+					temporary_element = Math.floor(Math.random() * full_set.length);
+					if(code_set.indexOf(temporary_element) >= 0){
+						idx--;
+					} else {
+						code_set.push(temporary_element);
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].katakana,
+							matched: false
+						};
+						tile_set.push(tile);
+						tile = {id: idx, code: full_set[temporary_element].hiragana, matched: false};
+						tile_set.push(tile);					
+					}
+				}				
+				
+			}			
 		}		
+		
+		
+		
 	}
 	
 	$(document).ready(function(){
@@ -319,7 +370,7 @@
 		$('.concentration-overlay .modal-dialog').removeClass('modal-sm');
 		$('.concentration-overlay .modal-content').html(
 			"<h1>You win!</h1>"
-			+ "<p>You found all " + (field_size.rows * field_size.cols) + " pairs in " + pair_flips + " tries.</p>"
+			+ "<p>You found all " + ((field_size.rows * field_size.cols) >> 1) + " pairs in " + pair_flips + " tries.</p>"
 		);
 		$('.concentration-overlay').modal();
 		game_in_progress = false;
@@ -546,112 +597,114 @@
 		];		
 	}
 	
-	function fullSetKatakana(){
+	function fullSetKatakanaHiragana(){
 		return [
-			{romaji: 'a', katakana: 'ア'},
-			{romaji: 'i', katakana: 'イ'},
-			{romaji: 'u', katakana: 'ウ'},
-			{romaji: 'e', katakana: 'エ'},
-			{romaji: 'o', katakana: 'オ'},
-			{romaji: 'ka', katakana: 'カ'},
-			{romaji: 'ki', katakana: 'キ'},
-			{romaji: 'ku', katakana: 'ク'},
-			{romaji: 'ke', katakana: 'ケ'},
-			{romaji: 'ko', katakana: 'コ'},
-			{romaji: 'sa', katakana: 'サ'},
-			{romaji: 'shi', katakana: 'シ'},
-			{romaji: 'su', katakana: 'ス'},
-			{romaji: 'se', katakana: 'セ'},
-			{romaji: 'so', katakana: 'ソ'},
-			{romaji: 'ta', katakana: 'タ'},
-			{romaji: 'te', katakana: 'チ'},
-			{romaji: 'tsu', katakana: 'ツ'},
-			{romaji: 'te', katakana: 'テ'},
-			{romaji: 'to', katakana: 'ト'},
-			{romaji: 'na', katakana: 'ナ'},
-			{romaji: 'ni', katakana: 'ニ'},
-			{romaji: 'nu', katakana: 'ヌ'},
-			{romaji: 'ne', katakana: 'ネ'},
-			{romaji: 'no', katakana: 'ノ'},
-			{romaji: 'ha', katakana: 'ハ'},
-			{romaji: 'hi', katakana: 'ヒ'},
-			{romaji: 'fu', katakana: 'フ'},
-			{romaji: 'he', katakana: 'ヘ'},
-			{romaji: 'ho', katakana: 'ホ'},
-			{romaji: 'ma', katakana: 'マ'},
-			{romaji: 'mi', katakana: 'ミ'},
-			{romaji: 'mu', katakana: 'ム'},
-			{romaji: 'me', katakana: 'メ'},
-			{romaji: 'mo', katakana: 'モ'},
-			{romaji: 'ya', katakana: 'ヤ'},
-			{romaji: 'yu', katakana: 'ユ'},
-			{romaji: 'yo', katakana: 'ヨ'},
-			{romaji: 'ra', katakana: 'ラ'},
-			{romaji: 'ri', katakana: 'リ'},
-			{romaji: 'ru', katakana: 'ル'},
-			{romaji: 're', katakana: 'レ'},
-			{romaji: 'ro', katakana: 'ロ'},
-			{romaji: 'wa', katakana: 'ワ'},
-			{romaji: 'wu', katakana: 'ヲ'},
-			{romaji: 'n', katakana: 'ン'},
-			{romaji: 'ga', katakana: 'ガ'},
-			{romaji: 'ge', katakana: 'ギ'},
-			{romaji: 'gu', katakana: 'グ'},
-			{romaji: 'ge', katakana: 'ゲ'},
-			{romaji: 'go', katakana: 'ゴ'},
-			{romaji: 'za', katakana: 'ザ'},
-			{romaji: 'ji', katakana: 'ジ'},
-			{romaji: 'zu', katakana: 'ズ'},
-			{romaji: 'ze', katakana: 'ゼ'},
-			{romaji: 'zo', katakana: 'ゾ'},
-			{romaji: 'da', katakana: 'ダ'},
-			{romaji: 'ji', katakana: 'ヂ'},
-			{romaji: 'zu', katakana: 'ヅ'},
-			{romaji: 'de', katakana: 'デ'},
-			{romaji: 'do', katakana: 'ド'},
-			{romaji: 'ba', katakana: 'バ'},
-			{romaji: 'bi', katakana: 'ビ'},
-			{romaji: 'bu', katakana: 'ブ'},
-			{romaji: 'be', katakana: 'ベ'},
-			{romaji: 'bo', katakana: 'ボ'},
-			{romaji: 'pa', katakana: 'パ'},
-			{romaji: 'pe', katakana: 'ピ'},
-			{romaji: 'pu', katakana: 'プ'},
-			{romaji: 'pe', katakana: 'ペ'},
-			{romaji: 'po', katakana: 'ポ'},
-			{romaji: 'kya', katakana: 'キャ'},
-			{romaji: 'kyu', katakana: 'キュ'},
-			{romaji: 'kyo', katakana: 'キョ'},
-			{romaji: 'sha', katakana: 'シャ'},
-			{romaji: 'shu', katakana: 'シュ'},
-			{romaji: 'sho', katakana: 'ショ'},
-			{romaji: 'cha', katakana: 'チャ'},
-			{romaji: 'chu', katakana: 'チュ'},
-			{romaji: 'cho', katakana: 'チョ'},
-			{romaji: 'nya', katakana: 'ニャ'},
-			{romaji: 'nyu', katakana: 'ニュ'},
-			{romaji: 'nyo', katakana: 'ニョ'},
-			{romaji: 'hya', katakana: 'ヒャ'},
-			{romaji: 'hyu', katakana: 'ヒュ'},
-			{romaji: 'hyo', katakana: 'ヒョ'},
-			{romaji: 'mya', katakana: 'ミャ'},
-			{romaji: 'myu', katakana: 'ミュ'},
-			{romaji: 'myo', katakana: 'ミョ'},
-			{romaji: 'rya', katakana: 'リャ'},
-			{romaji: 'ryu', katakana: 'リュ'},
-			{romaji: 'ryo', katakana: 'リョ'},
-			{romaji: 'gya', katakana: 'ギャ'},
-			{romaji: 'gyu', katakana: 'ギュ'},
-			{romaji: 'gyo', katakana: 'ギョ'},
-			{romaji: 'ja', katakana: 'ジャ'},
-			{romaji: 'ju', katakana: 'ジュ'},
-			{romaji: 'jo', katakana: 'ジョ'},
-			{romaji: 'bya', katakana: 'ビャ'},
-			{romaji: 'byu', katakana: 'ビュ'},
-			{romaji: 'byo', katakana: 'ビョ'},
-			{romaji: 'pya', katakana: 'ピャ'},
-			{romaji: 'pyu', katakana: 'ピュ'},
-			{romaji: 'pyo', katakana: 'ピョ'}
+			{romaji: 'a', katakana: 'ア', hiragana: 'あ'},
+			{romaji: 'i', katakana: 'イ', hiragana: 'い'},
+			{romaji: 'u', katakana: 'ウ', hiragana: 'う'},
+			{romaji: 'e', katakana: 'エ', hiragana: 'え'},
+			{romaji: 'o', katakana: 'オ', hiragana: 'お'},
+			{romaji: 'ka', katakana: 'カ', hiragana: 'か'},
+			{romaji: 'ki', katakana: 'キ', hiragana: 'き'},
+			{romaji: 'ku', katakana: 'ク', hiragana: 'く'},
+			{romaji: 'ke', katakana: 'ケ', hiragana: 'け'},
+			{romaji: 'ko', katakana: 'コ', hiragana: 'こ'},
+			{romaji: 'sa', katakana: 'サ', hiragana: 'さ'},
+			{romaji: 'shi', katakana: 'シ', hiragana: 'し'},
+			{romaji: 'su', katakana: 'ス', hiragana: 'す'},
+			{romaji: 'se', katakana: 'セ', hiragana: 'せ'},
+			{romaji: 'so', katakana: 'ソ', hiragana: 'そ'},
+			{romaji: 'ta', katakana: 'タ', hiragana: 'た'},
+			{romaji: 'te', katakana: 'チ', hiragana: 'ち'},
+			{romaji: 'tsu', katakana: 'ツ', hiragana: 'つ'},
+			{romaji: 'te', katakana: 'テ', hiragana: 'て'},
+			{romaji: 'to', katakana: 'ト', hiragana: 'と'},
+			{romaji: 'na', katakana: 'ナ', hiragana: 'な'},
+			{romaji: 'ni', katakana: 'ニ', hiragana: 'に'},
+			{romaji: 'nu', katakana: 'ヌ', hiragana: 'ぬ'},
+			{romaji: 'ne', katakana: 'ネ', hiragana: 'ね'},
+			{romaji: 'no', katakana: 'ノ', hiragana: 'の'},
+			{romaji: 'ha', katakana: 'ハ', hiragana: 'は'},
+			{romaji: 'hi', katakana: 'ヒ', hiragana: 'ひ'},
+			{romaji: 'fu', katakana: 'フ', hiragana: 'ふ'},
+			{romaji: 'he', katakana: 'ヘ', hiragana: 'へ'},
+			{romaji: 'ho', katakana: 'ホ', hiragana: 'ほ'},
+			{romaji: 'ma', katakana: 'マ', hiragana: 'ま'},
+			{romaji: 'mi', katakana: 'ミ', hiragana: 'み'},
+			{romaji: 'mu', katakana: 'ム', hiragana: 'む'},
+			{romaji: 'me', katakana: 'メ', hiragana: 'め'},
+			{romaji: 'mo', katakana: 'モ', hiragana: 'も'},
+			{romaji: 'ya', katakana: 'ヤ', hiragana: 'や'},
+			{romaji: 'yu', katakana: 'ユ', hiragana: 'ゆ'},
+			{romaji: 'yo', katakana: 'ヨ', hiragana: 'よ'},
+			{romaji: 'ra', katakana: 'ラ', hiragana: 'ら'},
+			{romaji: 'ri', katakana: 'リ', hiragana: 'り'},
+			{romaji: 'ru', katakana: 'ル', hiragana: 'る'},
+			{romaji: 're', katakana: 'レ', hiragana: 'れ'},
+			{romaji: 'ro', katakana: 'ロ', hiragana: 'ろ'},
+			{romaji: 'wa', katakana: 'ワ', hiragana: 'わ'},
+			{romaji: 'wi', katakana: 'ヰ', hiragana: 'ゐ'},
+			{romaji: 'we', katakana: 'ヱ', hiragana: 'ゑ'},
+			{romaji: 'wo', katakana: 'ヲ', hiragana: 'を'},
+			{romaji: 'n', katakana: 'ン', hiragana: 'ん'},
+			{romaji: 'ga', katakana: 'ガ', hiragana: 'が'},
+			{romaji: 'ge', katakana: 'ギ', hiragana: 'ぎ'},
+			{romaji: 'gu', katakana: 'グ', hiragana: 'ぐ'},
+			{romaji: 'ge', katakana: 'ゲ', hiragana: 'げ'},
+			{romaji: 'go', katakana: 'ゴ', hiragana: 'ご'},
+			{romaji: 'za', katakana: 'ザ', hiragana: 'ざ'},
+			{romaji: 'ji', katakana: 'ジ', hiragana: 'じ'},
+			{romaji: 'zu', katakana: 'ズ', hiragana: 'ず'},
+			{romaji: 'ze', katakana: 'ゼ', hiragana: 'ぜ'},
+			{romaji: 'zo', katakana: 'ゾ', hiragana: 'ぞ'},
+			{romaji: 'da', katakana: 'ダ', hiragana: 'だ'},
+			{romaji: 'ji', katakana: 'ヂ', hiragana: 'ぢ'},
+			{romaji: 'zu', katakana: 'ヅ', hiragana: 'づ'},
+			{romaji: 'de', katakana: 'デ', hiragana: 'で'},
+			{romaji: 'do', katakana: 'ド', hiragana: 'ど'},
+			{romaji: 'ba', katakana: 'バ', hiragana: 'ば'},
+			{romaji: 'bi', katakana: 'ビ', hiragana: 'び'},
+			{romaji: 'bu', katakana: 'ブ', hiragana: 'ぶ'},
+			{romaji: 'be', katakana: 'ベ', hiragana: 'べ'},
+			{romaji: 'bo', katakana: 'ボ', hiragana: 'ぼ'},
+			{romaji: 'pa', katakana: 'パ', hiragana: 'ぱ'},
+			{romaji: 'pe', katakana: 'ピ', hiragana: 'ぴ'},
+			{romaji: 'pu', katakana: 'プ', hiragana: 'ぷ'},
+			{romaji: 'pe', katakana: 'ペ', hiragana: 'ぺ'},
+			{romaji: 'po', katakana: 'ポ', hiragana: 'ぽ'},
+			{romaji: 'kya', katakana: 'キャ', hiragana: 'きゃ'},
+			{romaji: 'kyu', katakana: 'キュ', hiragana: 'きゅ'},
+			{romaji: 'kyo', katakana: 'キョ', hiragana: 'きょ'},
+			{romaji: 'sha', katakana: 'シャ', hiragana: 'しゃ'},
+			{romaji: 'shu', katakana: 'シュ', hiragana: 'しゅ'},
+			{romaji: 'sho', katakana: 'ショ', hiragana: 'しょ'},
+			{romaji: 'cha', katakana: 'チャ', hiragana: 'ちゃ'},
+			{romaji: 'chu', katakana: 'チュ', hiragana: 'ちゅ'},
+			{romaji: 'cho', katakana: 'チョ', hiragana: 'ちょ'},
+			{romaji: 'nya', katakana: 'ニャ', hiragana: 'にゃ'},
+			{romaji: 'nyu', katakana: 'ニュ', hiragana: 'にゅ'},
+			{romaji: 'nyo', katakana: 'ニョ', hiragana: 'にょ'},
+			{romaji: 'hya', katakana: 'ヒャ', hiragana: 'ひゃ'},
+			{romaji: 'hyu', katakana: 'ヒュ', hiragana: 'ひゅ'},
+			{romaji: 'hyo', katakana: 'ヒョ', hiragana: 'ひょ'},
+			{romaji: 'mya', katakana: 'ミャ', hiragana: 'みゃ'},
+			{romaji: 'myu', katakana: 'ミュ', hiragana: 'みゅ'},
+			{romaji: 'myo', katakana: 'ミョ', hiragana: 'みょ'},
+			{romaji: 'rya', katakana: 'リャ', hiragana: 'りゃ'},
+			{romaji: 'ryu', katakana: 'リュ', hiragana: 'りゅ'},
+			{romaji: 'ryo', katakana: 'リョ', hiragana: 'りょ'},
+			{romaji: 'gya', katakana: 'ギャ', hiragana: 'ぎゃ'},
+			{romaji: 'gyu', katakana: 'ギュ', hiragana: 'ぎゅ'},
+			{romaji: 'gyo', katakana: 'ギョ', hiragana: 'ぎょ'},
+			{romaji: 'ja', katakana: 'ジャ', hiragana: 'じゃ'},
+			{romaji: 'ju', katakana: 'ジュ', hiragana: 'じゅ'},
+			{romaji: 'jo', katakana: 'ジョ', hiragana: 'じょ'},
+			{romaji: 'bya', katakana: 'ビャ', hiragana: 'びゃ'},
+			{romaji: 'byu', katakana: 'ビュ', hiragana: 'びゅ'},
+			{romaji: 'byo', katakana: 'ビョ', hiragana: 'びょ'},
+			{romaji: 'pya', katakana: 'ピャ', hiragana: 'ぴゃ'},
+			{romaji: 'pyu', katakana: 'ピュ', hiragana: 'ぴゅ'},
+			{romaji: 'pyo', katakana: 'ピョ', hiragana: 'ぴょ'}
 		];
 	}
 	
