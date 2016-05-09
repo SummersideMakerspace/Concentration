@@ -136,7 +136,7 @@
 		japanese_katakana_english: {
 			init: function(){
 				code_set = [];
-				full_set = fullSetKatakanaHiragana();				
+				full_set = fullSetKana();				
 				total_pairs = (field_size.rows * field_size.cols) >> 1;
 				for(idx = 0; idx < total_pairs; idx++){
 					temporary_element = Math.floor(Math.random() * full_set.length);
@@ -160,7 +160,7 @@
 		japanese_hiragana_english: {
 			init: function(){
 				code_set = [];
-				full_set = fullSetKatakanaHiragana();				
+				full_set = fullSetKana();				
 				total_pairs = (field_size.rows * field_size.cols) >> 1;
 				for(idx = 0; idx < total_pairs; idx++){
 					temporary_element = Math.floor(Math.random() * full_set.length);
@@ -184,7 +184,7 @@
 		japanese_katakana_hiragana: {
 			init: function(){
 				code_set = [];
-				full_set = fullSetKatakanaHiragana();				
+				full_set = fullSetKana();				
 				total_pairs = (field_size.rows * field_size.cols) >> 1;
 				for(idx = 0; idx < total_pairs; idx++){
 					temporary_element = Math.floor(Math.random() * full_set.length);
@@ -204,10 +204,31 @@
 				}				
 				
 			}			
+		},
+		japanese_kanji_grade_1: {
+			init: function(){
+				code_set = [];
+				full_set = fullSetKanjiGrade1();				
+				total_pairs = (field_size.rows * field_size.cols) >> 1;
+				for(idx = 0; idx < total_pairs; idx++){
+					temporary_element = Math.floor(Math.random() * full_set.length);
+					if(code_set.indexOf(temporary_element) >= 0){
+						idx--;
+					} else {
+						code_set.push(temporary_element);
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].kanji,
+							matched: false
+						};
+						tile_set.push(tile);
+						tile = {id: idx, code: '<div class="small">' + full_set[temporary_element].meaning + '</div>', matched: false};
+						tile_set.push(tile);					
+					}
+				}				
+				
+			}			
 		}		
-		
-		
-		
 	}
 	
 	$(document).ready(function(){
@@ -597,7 +618,7 @@
 		];		
 	}
 	
-	function fullSetKatakanaHiragana(){
+	function fullSetKana(){
 		return [
 			{romaji: 'a', katakana: 'ア', hiragana: 'あ'},
 			{romaji: 'i', katakana: 'イ', hiragana: 'い'},
@@ -705,6 +726,91 @@
 			{romaji: 'pya', katakana: 'ピャ', hiragana: 'ぴゃ'},
 			{romaji: 'pyu', katakana: 'ピュ', hiragana: 'ぴゅ'},
 			{romaji: 'pyo', katakana: 'ピョ', hiragana: 'ぴょ'}
+		];
+	}
+	
+	function fullSetKanjiGrade1(){
+		return [
+			{kanji: '一', meaning: 'one'},
+			{kanji: '二', meaning: 'two'},
+			{kanji: '三', meaning: 'three'},
+			{kanji: '四', meaning: 'four'},
+			{kanji: '五', meaning: 'five'},
+			{kanji: '六', meaning: 'six'},
+			{kanji: '七', meaning: 'seven'},
+			{kanji: '八', meaning: 'eight'},
+			{kanji: '九', meaning: 'nine'},
+			{kanji: '十', meaning: 'ten'},
+			{kanji: '百', meaning: 'hundred'},
+			{kanji: '千', meaning: 'thousand'},
+			{kanji: '上', meaning: 'top, above'},
+			{kanji: '下', meaning: 'bottom, below'},
+			{kanji: '左', meaning: 'left'},
+			{kanji: '右', meaning: 'right'},
+			{kanji: '中', meaning: 'inside, middle'},
+			{kanji: '大', meaning: 'large'},
+			{kanji: '小', meaning: 'small'},
+			{kanji: '月', meaning: 'month; moon'},
+			{kanji: '日', meaning: 'day; sun'},
+			{kanji: '年', meaning: 'year'},
+			{kanji: '早', meaning: 'early'},
+			{kanji: '木', meaning: 'tree'},
+			{kanji: '林', meaning: 'woods'},
+			{kanji: '山', meaning: 'mountain'},
+			{kanji: '川', meaning: 'river'},
+			{kanji: '土', meaning: 'soil'},
+			{kanji: '空', meaning: 'sky'},
+			{kanji: '田', meaning: 'rice paddy'},
+			{kanji: '天', meaning: 'heaven'},
+			{kanji: '生', meaning: 'life, bare; raw'},
+			{kanji: '花', meaning: 'flower'},
+			{kanji: '草', meaning: 'grass'},
+			{kanji: '虫', meaning: 'insect'},
+			{kanji: '犬', meaning: 'dog'},
+			{kanji: '人', meaning: 'person'},
+			{kanji: '名', meaning: 'name'},
+			{kanji: '女', meaning: 'female'},
+			{kanji: '男', meaning: 'male'},
+			{kanji: '子', meaning: 'child'},
+			{kanji: '目', meaning: 'eye'},
+			{kanji: '耳', meaning: 'ear'},
+			{kanji: '口', meaning: 'mouth'},
+			{kanji: '手', meaning: 'hand'},
+			{kanji: '足', meaning: 'foot'},
+			{kanji: '見', meaning: 'see'},
+			{kanji: '音', meaning: 'sound'},
+			{kanji: '力', meaning: 'power'},
+			{kanji: '気', meaning: 'spirit; air'},
+			{kanji: '円', meaning: 'yen; circle'},
+			{kanji: '入', meaning: 'enter'},
+			{kanji: '出', meaning: 'exit'},
+			{kanji: '立', meaning: 'stand up'},
+			{kanji: '休', meaning: 'rest'},
+			{kanji: '先', meaning: 'previous'},
+			{kanji: '夕', meaning: 'evening'},
+			{kanji: '本', meaning: 'book'},
+			{kanji: '文', meaning: 'text'},
+			{kanji: '字', meaning: 'character'},
+			{kanji: '学', meaning: 'study'},
+			{kanji: '校', meaning: 'school'},
+			{kanji: '村', meaning: 'village'},
+			{kanji: '町', meaning: 'town'},
+			{kanji: '森', meaning: 'forest'},
+			{kanji: '正', meaning: 'correct'},
+			{kanji: '水', meaning: 'water'},
+			{kanji: '火', meaning: 'fire'},
+			{kanji: '玉', meaning: 'gem'},
+			{kanji: '王', meaning: 'king'},
+			{kanji: '石', meaning: 'stone'},
+			{kanji: '竹', meaning: 'bamboo'},
+			{kanji: '糸', meaning: 'thread'},
+			{kanji: '貝', meaning: 'shellfish'},
+			{kanji: '車', meaning: 'vehicle'},
+			{kanji: '金', meaning: 'gold, money'},
+			{kanji: '雨', meaning: 'rain'},
+			{kanji: '赤', meaning: 'red'},
+			{kanji: '青', meaning: 'blue'},
+			{kanji: '白', meaning: 'white'}		
 		];
 	}
 	

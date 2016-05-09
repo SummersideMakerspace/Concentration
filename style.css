@@ -139,6 +139,10 @@ body.modal-open{
 	font-size: 12px;
 }
 
+.small{
+	font-size: 16px;
+}
+
 .bottom{
 	height: 15px;
 	line-height: 15px;
