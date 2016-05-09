@@ -79,15 +79,25 @@ WebFontConfig = {
 					<div class="form-group">
 						<label for="deck-select">Card Deck:</label>
 						<select class="form-control" id="deck-select" name="deck-select">
-							<option value="upper_lower_alphabet">English Alphabet: Uppercase &lt;=&gt; Lowercase </option>
-							<option value="element_atomic_number">Periodic Table: Name/Symbol &lt;=&gt; Number</option>
-							<option value="element_atomic_symbol">Periodic Table: Name/Number &lt;=&gt; Symbol</option>
-							<option value="morse_english">Morse Code: ITU &lt;=&gt; English</option>
-							<option value="braille_english_uncontracted">Braille: English Uncontracted &lt;=&gt; English</option>
-							<option value="japanese_katakana_english">Japanese: Katakana &lt;=&gt; Romaji (English)</option>
-							<option value="japanese_hiragana_english">Japanese: Hiragana &lt;=&gt; Romaji (English)</option>
-							<option value="japanese_katakana_hiragana">Japanese: Katakana &lt;=&gt; Hiragana</option>
-							<option value="japanese_kanji_grade_1">Japanese: Kanji Grade 1 &lt;=&gt; English Meaning</option>
+							<optgroup label="English">
+								<option value="upper_lower_alphabet">Alphabet: Uppercase &lt;=&gt; Lowercase </option>
+							</optgroup>
+							<optgroup label="Morse Code">
+								<option value="morse_english">ITU &lt;=&gt; English</option>
+							</optgroup>
+							<optgroup label="Braille">
+								<option value="braille_english_uncontracted">English Uncontracted &lt;=&gt; English</option>							
+							</optgroup>
+							<optgroup label="Periodic Table">
+								<option value="element_atomic_number">Name/Symbol &lt;=&gt; Number</option>
+								<option value="element_atomic_symbol">Name/Number &lt;=&gt; Symbol</option>
+							</optgroup>
+							<optgroup label="Japanese">
+								<option value="japanese_katakana_english">Katakana &lt;=&gt; Romaji (English)</option>
+								<option value="japanese_hiragana_english">Hiragana &lt;=&gt; Romaji (English)</option>
+								<option value="japanese_katakana_hiragana">Katakana &lt;=&gt; Hiragana</option>
+								<option value="japanese_kanji_grade_1">Kanji Grade 1 &lt;=&gt; English Meaning</option>
+							</optgroup>
 						</select>
 					</div>					
 					<div class="text-center">
