@@ -222,7 +222,7 @@
 							matched: false
 						};
 						tile_set.push(tile);
-						tile = {id: idx, code: '<div class="small">' + full_set[temporary_element].meaning + '</div>', matched: false};
+						tile = {id: idx, code: '<span class="small middle">' + full_set[temporary_element].meaning + '</span>', matched: false};
 						tile_set.push(tile);					
 					}
 				}				
