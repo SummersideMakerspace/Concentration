@@ -169,11 +169,20 @@
 						code_set.push(temporary_element);
 						tile = {
 							id: idx, 
-							code: full_set[temporary_element].katakana,
+							code: full_set[temporary_element].katakana 
+								+ "<span class='bottom medium on-match'>" 
+								+ full_set[temporary_element].romaji 
+								+ "</span>",
 							matched: false
 						};
 						tile_set.push(tile);
-						tile = {id: idx, code: full_set[temporary_element].romaji, matched: false};
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].romaji 
+							+ "<span class='bottom medium on-match'>" 
+							+ full_set[temporary_element].katakana 
+							+ "</span>", 
+							matched: false};
 						tile_set.push(tile);					
 					}
 				}				
@@ -193,11 +202,20 @@
 						code_set.push(temporary_element);
 						tile = {
 							id: idx, 
-							code: full_set[temporary_element].hiragana,
+							code: full_set[temporary_element].hiragana
+								+ "<span class='bottom medium on-match'>" 
+								+ full_set[temporary_element].romaji 
+								+ "</span>",
 							matched: false
 						};
 						tile_set.push(tile);
-						tile = {id: idx, code: full_set[temporary_element].romaji, matched: false};
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].romaji
+								+ "<span class='bottom medium on-match'>" 
+								+ full_set[temporary_element].hiragana 
+								+ "</span>",
+							matched: false};
 						tile_set.push(tile);					
 					}
 				}				
@@ -217,11 +235,20 @@
 						code_set.push(temporary_element);
 						tile = {
 							id: idx, 
-							code: full_set[temporary_element].katakana,
+							code: full_set[temporary_element].katakana
+							+ "<span class='bottom medium on-match'>"
+							+ full_set[temporary_element].hiragana
+							+ "</span>",
 							matched: false
 						};
 						tile_set.push(tile);
-						tile = {id: idx, code: full_set[temporary_element].hiragana, matched: false};
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].hiragana
+							+ "<span class='bottom medium on-match'>"
+							+ full_set[temporary_element].katakana
+							+ "</span>",							
+							matched: false};
 						tile_set.push(tile);					
 					}
 				}				
