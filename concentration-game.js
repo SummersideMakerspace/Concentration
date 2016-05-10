@@ -54,11 +54,22 @@
 							code: full_set[temporary_element].symbol 
 								+ "<span class='tiny bottom'>" 
 								+ full_set[temporary_element].title 
+								+ "</span><span class='top left small on-match'>"
+								+ (temporary_element + 1)
 								+ "</span>",
 							matched: false
 						};
 						tile_set.push(tile);
-						tile = {id: idx, code: temporary_element + 1, matched: false};
+						tile = {
+							id: idx, 
+							code: (temporary_element + 1) 
+								+ "<span class='tiny bottom on-match'>" 
+								+ full_set[temporary_element].title 
+								+ "</span><span class='top left small on-match'>"
+								+ full_set[temporary_element].symbol 
+								+ "</span>", 
+							matched: false
+						};
 						tile_set.push(tile);					
 					}
 				}
@@ -77,14 +88,21 @@
 						code_set.push(temporary_element);
 						tile = {
 							id: idx, 
-							code: temporary_element + 1
+							code: (temporary_element + 1)
 								+ "<span class='tiny bottom'>" 
 								+ full_set[temporary_element].title 
-								+ "</span>",
+								+ "</span><span class='top left small on-match'>" + full_set[temporary_element].symbol + "</span>",
 							matched: false
 						};
 						tile_set.push(tile);
-						tile = {id: idx, code: full_set[temporary_element].symbol, matched: false};
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].symbol
+								+"<span class='tiny bottom'>" 
+								+ full_set[temporary_element].title 
+								+ "</span><span class='top left small on-match'>" + (temporary_element + 1) + "</span>", 
+							matched: false
+						};
 						tile_set.push(tile);					
 					}
 				}
@@ -103,11 +121,11 @@
 						code_set.push(temporary_element);
 						tile = {
 							id: idx, 
-							code: full_set[temporary_element].morse,
+							code: full_set[temporary_element].morse + '<span class="bottom medium on-match">' + full_set[temporary_element].english + '</span>',
 							matched: false
 						};
 						tile_set.push(tile);
-						tile = {id: idx, code: full_set[temporary_element].english, matched: false};
+						tile = {id: idx, code: full_set[temporary_element].english + '<span class="bottom medium on-match">' + full_set[temporary_element].morse + '</span>', matched: false};
 						tile_set.push(tile);					
 					}
 				}				
@@ -127,11 +145,11 @@
 						code_set.push(temporary_element);
 						tile = {
 							id: idx, 
-							code: full_set[temporary_element].braille,
+							code: full_set[temporary_element].braille + '<span class="bottom medium on-match">' + full_set[temporary_element].english + '</span>',
 							matched: false
 						};
 						tile_set.push(tile);
-						tile = {id: idx, code: full_set[temporary_element].english, matched: false};
+						tile = {id: idx, code: full_set[temporary_element].english + '<span class="bottom medium on-match">' + full_set[temporary_element].braille + '</span>', matched: false};
 						tile_set.push(tile);					
 					}
 				}				
@@ -223,11 +241,11 @@
 						code_set.push(temporary_element);
 						tile = {
 							id: idx, 
-							code: full_set[temporary_element].kanji,
+							code: full_set[temporary_element].kanji + '<span class="bottom tiny on-match">' + full_set[temporary_element].meaning + '</span>',
 							matched: false
 						};
 						tile_set.push(tile);
-						tile = {id: idx, code: '<span class="small middle">' + full_set[temporary_element].meaning + '</span>', matched: false};
+						tile = {id: idx, code: '<span class="small middle">' + full_set[temporary_element].meaning + '</span><span class="bottom medium on-match">' + full_set[temporary_element].kanji + '</span>', matched: false};
 						tile_set.push(tile);					
 					}
 				}				
@@ -262,7 +280,8 @@
 	
 	function init(){
 		game_in_progress = true;
-		pair_flips = 0;
+		pair_flips = cards_flipped = 0;
+		first_card = second_card = '';
 		pairs_left = (field_size.rows * field_size.cols) >> 1;
 		tile_set = [];
 		
