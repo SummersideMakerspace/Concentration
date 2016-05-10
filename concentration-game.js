@@ -1,8 +1,13 @@
 (function($){
-	
+	console.log($(window).width());
 	var game_in_progress = false;
 	var field_size = {
-		rows: 4, cols: 6, col_size: 2
+		rows: 4, cols: 4, col_size: 3
+	}
+	if(992 <= Math.max(document.documentElement.clientWidth, window.innerWidth || 0)){
+		var field_size = {
+			rows: 4, cols: 6, col_size: 2
+		}		
 	}
 	var cards_flipped = 0;
 	var pair_flips = 0;

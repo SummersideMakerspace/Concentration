@@ -17,12 +17,6 @@ body.modal-open{
     padding-right: 0 !important;
 }
 
-.social-links{
-	position: absolute;
-	right: 0;
-	top: 0;
-}
-
 .social-links i{
 	font-size: 32px;
 }
@@ -38,6 +32,7 @@ body.modal-open{
 }
 
 .sidebar{
+	margin-top: 60px;
 	text-align: justify;
 }
 
@@ -159,4 +154,22 @@ body.modal-open{
 	position: absolute;
 	bottom: 0;
 	width: 100%;
+}
+
+@media screen and (min-width: 768px){
+	.sidebar{
+		margin-top: 0;
+	}	
+}
+
+@media screen and (min-width: 992px){
+	.page-header h1{
+		margin-bottom: 10px;
+	}
+	
+	.social-links{
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
 }
