@@ -98,7 +98,7 @@
 						tile = {
 							id: idx, 
 							code: full_set[temporary_element].symbol
-								+"<span class='tiny bottom'>" 
+								+"<span class='tiny bottom on-match'>" 
 								+ full_set[temporary_element].title 
 								+ "</span><span class='top left small on-match'>" + (temporary_element + 1) + "</span>", 
 							matched: false
