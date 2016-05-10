@@ -222,6 +222,45 @@
 				
 			}			
 		},
+		japanese_katakana_hiragana_romaji: {
+			init: function(){
+				code_set = [];
+				full_set = fullSetKana();				
+				total_pairs = (field_size.rows * field_size.cols) >> 1;
+				for(idx = 0; idx < total_pairs; idx++){
+					temporary_element = Math.floor(Math.random() * full_set.length);
+					if(code_set.indexOf(temporary_element) >= 0){
+						idx--;
+					} else {
+						code_set.push(temporary_element);
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].katakana
+							+ "<span class='top left small'>"
+							+ full_set[temporary_element].romaji
+							+ "</span>"
+							+ "<span class='bottom medium on-match'>"
+							+ full_set[temporary_element].hiragana
+							+ "</span>",
+							matched: false
+						};
+						tile_set.push(tile);
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].hiragana	
+							+ "<span class='top left small on-match'>"
+							+ full_set[temporary_element].romaji
+							+ "</span>"							
+							+ "<span class='bottom medium on-match'>"
+							+ full_set[temporary_element].katakana
+							+ "</span>",							
+							matched: false};
+						tile_set.push(tile);					
+					}
+				}				
+				
+			}			
+		},
 		japanese_katakana_hiragana: {
 			init: function(){
 				code_set = [];
