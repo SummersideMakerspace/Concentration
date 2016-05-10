@@ -156,6 +156,11 @@ body.modal-open{
 	width: 100%;
 }
 
+.help-block{
+	font-size: 14px;
+	color: #646464;
+}
+
 @media screen and (min-width: 768px){
 	.sidebar{
 		margin-top: 0;
