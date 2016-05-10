@@ -1,5 +1,4 @@
 (function($){
-	console.log($(window).width());
 	var game_in_progress = false;
 	var field_size = {
 		rows: 4, cols: 4, col_size: 3
