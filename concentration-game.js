@@ -17,7 +17,6 @@ limitations under the License.
 */
 
 (function($){
-	console.log($(window).width());
 	var game_in_progress = false;
 	var field_size = {
 		rows: 4, cols: 4, col_size: 3
@@ -116,7 +115,7 @@ limitations under the License.
 						tile = {
 							id: idx, 
 							code: full_set[temporary_element].symbol
-								+"<span class='tiny bottom'>" 
+								+"<span class='tiny bottom on-match'>" 
 								+ full_set[temporary_element].title 
 								+ "</span><span class='top left small on-match'>" + (temporary_element + 1) + "</span>", 
 							matched: false
@@ -187,11 +186,20 @@ limitations under the License.
 						code_set.push(temporary_element);
 						tile = {
 							id: idx, 
-							code: full_set[temporary_element].katakana,
+							code: full_set[temporary_element].katakana 
+								+ "<span class='bottom medium on-match'>" 
+								+ full_set[temporary_element].romaji 
+								+ "</span>",
 							matched: false
 						};
 						tile_set.push(tile);
-						tile = {id: idx, code: full_set[temporary_element].romaji, matched: false};
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].romaji 
+							+ "<span class='bottom medium on-match'>" 
+							+ full_set[temporary_element].katakana 
+							+ "</span>", 
+							matched: false};
 						tile_set.push(tile);					
 					}
 				}				
@@ -211,11 +219,59 @@ limitations under the License.
 						code_set.push(temporary_element);
 						tile = {
 							id: idx, 
-							code: full_set[temporary_element].hiragana,
+							code: full_set[temporary_element].hiragana
+								+ "<span class='bottom medium on-match'>" 
+								+ full_set[temporary_element].romaji 
+								+ "</span>",
 							matched: false
 						};
 						tile_set.push(tile);
-						tile = {id: idx, code: full_set[temporary_element].romaji, matched: false};
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].romaji
+								+ "<span class='bottom medium on-match'>" 
+								+ full_set[temporary_element].hiragana 
+								+ "</span>",
+							matched: false};
+						tile_set.push(tile);					
+					}
+				}				
+				
+			}			
+		},
+		japanese_katakana_hiragana_romaji: {
+			init: function(){
+				code_set = [];
+				full_set = fullSetKana();				
+				total_pairs = (field_size.rows * field_size.cols) >> 1;
+				for(idx = 0; idx < total_pairs; idx++){
+					temporary_element = Math.floor(Math.random() * full_set.length);
+					if(code_set.indexOf(temporary_element) >= 0){
+						idx--;
+					} else {
+						code_set.push(temporary_element);
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].katakana
+							+ "<span class='top left small'>"
+							+ full_set[temporary_element].romaji
+							+ "</span>"
+							+ "<span class='bottom medium on-match'>"
+							+ full_set[temporary_element].hiragana
+							+ "</span>",
+							matched: false
+						};
+						tile_set.push(tile);
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].hiragana	
+							+ "<span class='top left small on-match'>"
+							+ full_set[temporary_element].romaji
+							+ "</span>"							
+							+ "<span class='bottom medium on-match'>"
+							+ full_set[temporary_element].katakana
+							+ "</span>",							
+							matched: false};
 						tile_set.push(tile);					
 					}
 				}				
@@ -235,11 +291,20 @@ limitations under the License.
 						code_set.push(temporary_element);
 						tile = {
 							id: idx, 
-							code: full_set[temporary_element].katakana,
+							code: full_set[temporary_element].katakana
+							+ "<span class='bottom medium on-match'>"
+							+ full_set[temporary_element].hiragana
+							+ "</span>",
 							matched: false
 						};
 						tile_set.push(tile);
-						tile = {id: idx, code: full_set[temporary_element].hiragana, matched: false};
+						tile = {
+							id: idx, 
+							code: full_set[temporary_element].hiragana
+							+ "<span class='bottom medium on-match'>"
+							+ full_set[temporary_element].katakana
+							+ "</span>",							
+							matched: false};
 						tile_set.push(tile);					
 					}
 				}				
